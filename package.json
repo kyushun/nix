@@ -1,0 +1,36 @@
+{
+  "name": "@kyushun/nix",
+  "version": "0.0.1",
+  "description": "ni extended",
+  "author": "kyushun <mail@kyushun.com>",
+  "homepage": "https://github.com/kyushun/nix",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyushun/nix"
+  },
+  "bugs": {
+    "url": "https://github.com/kyushun/nix/issues"
+  },
+  "packageManager": "pnpm@8.6.12",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint \"src/**/*.ts\"",
+    "nix": "tsx src/bin.ts"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.5.4",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "eslint": "^8.47.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "prettier": "^3.0.2",
+    "tsup": "^7.2.0",
+    "tsx": "^3.12.7",
+    "typescript": "^5.1.6"
+  }
+}
