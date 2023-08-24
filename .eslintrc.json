@@ -12,7 +12,11 @@
   "plugins": ["@typescript-eslint", "simple-import-sort"],
   "rules": {
     "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error"
+    "simple-import-sort/exports": "error",
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/extensions": "off",
+    "no-console": "off"
   },
   "settings": {
     "import/resolver": {
