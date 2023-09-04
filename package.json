@@ -40,6 +40,6 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@antfu/ni": "^0.21.6"
+    "@antfu/ni": "0.21.8"
   }
 }
