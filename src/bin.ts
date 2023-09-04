@@ -1,4 +1,7 @@
 import { parseNi, parseNlx, parseNr, parseNun, runCli } from '@antfu/ni';
+import c from 'kleur';
+
+import { version } from '../package.json';
 
 const command = process.argv[2];
 const args = process.argv.slice(3).filter(Boolean);
@@ -28,6 +31,10 @@ switch (command) {
     break;
   case 'run':
   default:
+    if (command.toLowerCase() === '-v' && !args.length) {
+      console.log(`nix        ${c.yellow(`v${version}`)}`);
+    }
+
     runCli(parseNr, { args: command === 'run' ? args : [command, ...args] });
     break;
 }
