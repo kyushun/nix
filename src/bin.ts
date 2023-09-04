@@ -1,4 +1,12 @@
-import { parseNi, parseNlx, parseNr, parseNun, runCli } from '@antfu/ni';
+import {
+  parseNa,
+  parseNi,
+  parseNlx,
+  parseNr,
+  parseNu,
+  parseNun,
+  runCli,
+} from '@antfu/ni';
 import c from 'kleur';
 
 import { version } from '../package.json';
@@ -22,11 +30,14 @@ switch (command) {
   case 'uninstall':
     runCli(parseNun, { args });
     break;
-  case 'exec':
-    runCli(parseNlx, { args });
-    break;
   case 'upgrade':
   case 'update':
+    runCli(parseNu, { args });
+    break;
+  case 'exec':
+    runCli(parseNa, { args });
+    break;
+  case 'dlx':
     runCli(parseNlx, { args });
     break;
   case 'run':
