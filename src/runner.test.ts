@@ -1,3 +1,4 @@
+// src/runner.test.ts
 import {
   parseNa,
   parseNi,
@@ -18,78 +19,60 @@ describe('run()', () => {
     vi.clearAllMocks();
   });
 
-  it('should be tested', () => {
-    run();
+  it.each([
+    ['install', []],
+    ['add', []],
+    [undefined, []],
+  ])(
+    'should call runCli with parseNi for the command "%s"',
+    (command, args) => {
+      run(command, args);
+      expect(runCli).toBeCalledWith(parseNi, { args });
+    },
+  );
 
-    expect(runCli).toBeCalledWith(parseNi, { args: [] });
-  });
+  it.each([
+    ['remove', ['@kyushun/ni']],
+    ['uninstall', ['@kyushun/ni']],
+  ])(
+    'should call runCli with parseNun for the command "%s"',
+    (command, args) => {
+      run(command, args);
+      expect(runCli).toBeCalledWith(parseNun, { args });
+    },
+  );
 
-  it('should be tested', () => {
-    run('install');
+  it.each([
+    ['upgrade', ['@kyushun/ni']],
+    ['update', ['@kyushun/ni']],
+  ])(
+    'should call runCli with parseNu for the command "%s"',
+    (command, args) => {
+      run(command, args);
+      expect(runCli).toBeCalledWith(parseNu, { args });
+    },
+  );
 
-    expect(runCli).toBeCalledWith(parseNi, { args: [] });
-  });
-
-  it('should be tested', () => {
-    run('install', ['@kyushun/ni']);
-
-    expect(runCli).toBeCalledWith(parseNi, { args: ['@kyushun/ni'] });
-  });
-
-  it('should be tested', () => {
-    run('add', ['@kyushun/ni']);
-
-    expect(runCli).toBeCalledWith(parseNi, { args: ['@kyushun/ni'] });
-  });
-
-  it('should be tested', () => {
-    run('remove', ['@kyushun/ni']);
-
-    expect(runCli).toBeCalledWith(parseNun, { args: ['@kyushun/ni'] });
-  });
-
-  it('should be tested', () => {
-    run('uninstall', ['@kyushun/ni']);
-
-    expect(runCli).toBeCalledWith(parseNun, { args: ['@kyushun/ni'] });
-  });
-
-  it('should be tested', () => {
+  it('should call runCli with parseNa for the command "exec"', () => {
     run('exec', ['@kyushun/ni']);
-
     expect(runCli).toBeCalledWith(parseNa, { args: ['@kyushun/ni'] });
   });
-  it('should be tested', () => {
-    run('dlx', ['@kyushun/ni']);
 
+  it('should call runCli with parseNlx for the command "dlx"', () => {
+    run('dlx', ['@kyushun/ni']);
     expect(runCli).toBeCalledWith(parseNlx, { args: ['@kyushun/ni'] });
   });
 
-  it('should be tested', () => {
-    run('upgrade', ['@kyushun/ni']);
-
-    expect(runCli).toBeCalledWith(parseNu, { args: ['@kyushun/ni'] });
-  });
-
-  it('should be tested', () => {
-    run('update', ['@kyushun/ni']);
-
-    expect(runCli).toBeCalledWith(parseNu, { args: ['@kyushun/ni'] });
-  });
-
-  it('should be tested', () => {
-    run('run', ['test', 'src/runner.test.ts']);
-
-    expect(runCli).toBeCalledWith(parseNr, {
-      args: ['test', 'src/runner.test.ts'],
-    });
-  });
-
-  it('should be tested', () => {
-    run('test', ['src/runner.test.ts']);
-
-    expect(runCli).toBeCalledWith(parseNr, {
-      args: ['test', 'src/runner.test.ts'],
-    });
-  });
+  it.each([
+    ['run', ['test', 'src/runner.test.ts']],
+    ['test', ['src/runner.test.ts']],
+  ])(
+    'should call runCli with parseNr for the command "%s"',
+    (command, args) => {
+      run(command, args);
+      expect(runCli).toBeCalledWith(parseNr, {
+        args: command === 'run' ? args : [command, ...args],
+      });
+    },
+  );
 });
