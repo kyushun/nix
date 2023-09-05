@@ -11,12 +11,12 @@ import c from 'kleur';
 
 import { version } from '../package.json';
 
-export const run = (command: string, args: string[]) => {
+export const run = (command?: string, args: string[] = []) => {
   switch (command) {
     case undefined:
     case 'install':
     case 'add':
-      runCli(parseNi, { args: command && args });
+      runCli(parseNi, { args: (command && args) || [] });
       break;
     case 'ci':
       runCli(
