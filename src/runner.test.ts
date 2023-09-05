@@ -1,4 +1,3 @@
-// src/runner.test.ts
 import {
   parseNa,
   parseNi,
